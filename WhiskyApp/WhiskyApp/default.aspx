@@ -9,6 +9,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
+
+        <asp:PlaceHolder ID="UploadSuccess" runat="server" Visible="false">
+            <p>Det gick kanon att lägga till en användare</p>
+        </asp:PlaceHolder>
     
             <%--  --%>
     <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" runat="server" ShowModelStateErrors="false"/>
@@ -17,6 +21,7 @@
     <div id = "container">
         <asp:ListView ID="WhiskyListView" runat="server"
                 ItemType="WhiskyApp.Model.LabelBrands"
+                
                 SelectMethod="WhiskyListView_GetData"
                 DeleteMethod="ContactListView_DeleteItem"
                 

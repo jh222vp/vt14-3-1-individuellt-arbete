@@ -11,16 +11,20 @@ namespace WhiskyApp
     public partial class _default : System.Web.UI.Page
     {
         //Fältet _service
-        //private Service _service;
+        private Service _service;
 
-        //private Service Service
-        //{
-        //    get { return _service ?? (_service = new Service()); }
-        //}
+        private Service Service
+        {
+            get { return _service ?? (_service = new Service()); }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["AddUserSuccess"] as bool? == true)
+            {
+                UploadSuccess.Visible = true;
+                Session.Remove("AddUserSuccess");
+            }
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -71,6 +75,20 @@ namespace WhiskyApp
                 ModelState.AddModelError(String.Empty, String.Format("Ett fel inträffade när kontakten med ID {0} skulle tas bort", BrandID)); ;
             }
         }
-
+        
+        public void ContactListView_InsertItem(LabelBrands labelBrands)
+        {
+            try
+            {
+                Service.SaveLabelBrands(labelBrands);
+                Session["AddUserSuccess"] = true;
+                //Redirecten skickar oss vidare till defaultsidan så det inte sker en ny postback
+                Response.Redirect("~/Default.aspx");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, "Ett fel inträffade när kontakten skapades");
+            }
+        }
     }
 }

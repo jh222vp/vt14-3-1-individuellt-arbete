@@ -76,6 +76,7 @@
     <Compile Include="Model\ModelTable\WhiskyModel.cs" />
     <Compile Include="Model\ModelTable\ModelDAL.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\Validation\ValidationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

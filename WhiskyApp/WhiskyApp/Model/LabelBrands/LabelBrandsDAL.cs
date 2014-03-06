@@ -96,7 +96,29 @@ namespace WhiskyApp.Model
 
 
 
+        public void InsertWhisky(LabelBrands labelbrands)
+        {
+            using (SqlConnection conn = CreateConnection())
 
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddWhisky", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Brand", SqlDbType.VarChar, 50).Value = labelbrands.Brand;
+
+                    cmd.Parameters.Add("@BrandID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                    //Öppnar anslutning till databasen samt "ExecuteNonQuery" kommandot för att "INSERT" till databasen
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    labelbrands.BrandID = (int)cmd.Parameters["@BrandID"].Value;
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Error i åtkomstlagret i databasen");
+                }
+        }
 
 
 
