@@ -12,18 +12,18 @@ namespace WhiskyApp.Model.BottleTable
 
         [Required(ErrorMessage = "En Epost adress måste anges")]
         [EmailAddress(ErrorMessage = "Eposten måste vara korrekt")]
-        public string Year { get; set; }
+        public int Year { get; set; }
 
         [Required(ErrorMessage = "En Epost adress måste anges")]
         [EmailAddress(ErrorMessage = "Eposten måste vara korrekt")]
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         [Required(ErrorMessage = "En Epost adress måste anges")]
         [EmailAddress(ErrorMessage = "Eposten måste vara korrekt")]
-        public string Amount { get; set; }
+        public int Amount { get; set; }
 
         [Required(ErrorMessage = "En Epost adress måste anges")]
         [EmailAddress(ErrorMessage = "Eposten måste vara korrekt")]
-        public string Percents { get; set; }
+        public decimal Percents { get; set; }
     }
 }

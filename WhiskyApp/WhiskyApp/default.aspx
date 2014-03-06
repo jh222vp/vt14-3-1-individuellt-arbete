@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <%--<div>--%>
+    <div>
     
             <%--  --%>
     <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" runat="server" ShowModelStateErrors="false"/>
@@ -18,6 +18,7 @@
         <asp:ListView ID="WhiskyListView" runat="server"
                 ItemType="WhiskyApp.Model.LabelBrands"
                 SelectMethod="WhiskyListView_GetData"
+                DeleteMethod="ContactListView_DeleteItem"
                 
 
                 DataKeyNames="BrandID">
@@ -35,16 +36,12 @@
                         <%-- Platshållare för nya rader --%>
                         <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
                     </table>
+
+
                 </LayoutTemplate>
                 
 
-
-
-
-
-             <%-- Nedan lista MÄRKET av whiskyn --%>
-            <ItemTemplate>
-                    
+                <ItemTemplate>
                     <tr>
                         <td>
                             <%#: Item.Brand %>
@@ -56,6 +53,7 @@
                         </td>
                     </tr>
                 </ItemTemplate>
+            </asp:ListView>
 
 
 
@@ -63,9 +61,7 @@
 
 
 
-
-                <%-- Nedan lista MODELL av whiskyn --%>
-             </asp:ListView>
+            <%-- Nedan lista MODELL av whiskyn --%>
              <asp:ListView ID="WhiskyModelListView" runat="server"
                 ItemType="WhiskyApp.Model.WhiskyModel"
                 SelectMethod="WhiskyModelListView_GetData">
@@ -77,7 +73,8 @@
                             </th>
                         </tr>
                         <th>
-                        </th>                   
+                        </th> 
+                                          
                         <%-- Platshållare för nya rader --%>
                         <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
                     </table>
@@ -92,19 +89,72 @@
                         </td>
                     </tr>
                 </ItemTemplate>
-        </asp:ListView>
+        
 
+
+
+
+
+                 </asp:ListView>
+
+
+
+
+
+
+            <%-- Nedan lista MODELL av whiskyn --%>
+             <asp:ListView ID="BottleListView" runat="server"
+                ItemType="WhiskyApp.Model.BottleTable.Bottle"
+                SelectMethod="BottleListView_GetData">
+                <LayoutTemplate>
+                    <table class="table1">
+                        <tr>
+                            <th>
+                                Pris i kronor
+                            </th>
+                        </tr>
+                        <th>
+                        </th> 
+                                          
+                        <%-- Platshållare för nya rader --%>
+                        <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#: Item.Price %>
+                        </td>
+                        <td class="command">
+                            <%-- knappar för att ta bort och redigera kunduppgifter --%>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
 
 
 
         
 
 
-                
 
 
 
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
     </div>
     </form>
 </body>

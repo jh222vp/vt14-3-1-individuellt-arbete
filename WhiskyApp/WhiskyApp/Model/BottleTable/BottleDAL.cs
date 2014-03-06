@@ -10,7 +10,7 @@ namespace WhiskyApp.Model.BottleTable
     public class BottleDAL : DAL.DALBase
     {
         //GetContacts används för att hämta alla kontaktuppgifter samt kontakatuppgifter
-        public IEnumerable<Bottle> GetBottleInfo()
+        public static IEnumerable<Bottle> GetBottleInfo()
         {
             using (var conn = CreateConnection())
             {
@@ -18,7 +18,7 @@ namespace WhiskyApp.Model.BottleTable
                 {
                     // Skapar det List-objekt som initialt har plats för 100 referenser till Customer-objekt.
                     var bottle = new List<Bottle>(100);
-                    var cmd = new SqlCommand("appSchema.usp_ListAllBrands", conn);
+                    var cmd = new SqlCommand("appSchema.usp_ListAllBottleProperties", conn);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -40,10 +40,10 @@ namespace WhiskyApp.Model.BottleTable
                             bottle.Add(new Bottle
                             {
                                 BottleID = reader.GetInt32(BottleIdIndex),
-                                Year = reader.GetString(YearIndex),
-                                Price = reader.GetString(PriceIndex),
-                                Amount = reader.GetString(AmountIndex),
-                                Percents = reader.GetString(PercentsIndex),
+                                Year = reader.GetInt32(YearIndex),
+                                Price = reader.GetDecimal(PriceIndex),
+                                Amount = reader.GetInt32(AmountIndex),
+                                Percents = reader.GetDecimal(PercentsIndex),
                             });
                         }
                     }

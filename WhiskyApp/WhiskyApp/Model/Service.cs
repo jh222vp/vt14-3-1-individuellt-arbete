@@ -7,20 +7,14 @@ namespace WhiskyApp.Model
 {
     public class Service
     {
-        //Fält
+        
         private static LabelBrandsDAL _labelBrandsDAL;
 
-        //Egenskap
+       
         public static LabelBrandsDAL LabelBrandsDAL
         {
             get { return _labelBrandsDAL ?? (_labelBrandsDAL = new LabelBrandsDAL()); }
         }
-
-
-        //public LabelBrands GetContact(int contactId)
-        //{
-        //    return LabelBrandsDAL.GetContact(contactId);
-        //}
 
         public static IEnumerable<LabelBrands> GetWhiskys()
         {
@@ -30,5 +24,21 @@ namespace WhiskyApp.Model
         {
             return ModelDAL.GetWhiskyModels();
         }
+        public static IEnumerable<BottleTable.Bottle> GetBottleInfo()
+        {
+            return BottleTable.BottleDAL.GetBottleInfo();
+        }
+
+
+        public static void DeleteLabelBrand(LabelBrands labelbrandsID)
+        {
+            DeleteLabelBrand(labelbrandsID.BrandID);
+        }
+
+        public static void DeleteLabelBrand(int brandID)
+        {
+            LabelBrandsDAL.DeleteLabelBrand(brandID);
+        }
+
     }
 }

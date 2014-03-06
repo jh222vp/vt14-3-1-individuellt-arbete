@@ -47,5 +47,30 @@ namespace WhiskyApp
             return Service.GetWhiskyModel();
         }
 
+
+
+
+
+        public IEnumerable<WhiskyApp.Model.BottleTable.Bottle> BottleListView_GetData()
+        {
+            return Service.GetBottleInfo();
+        }
+
+
+
+        public void ContactListView_DeleteItem(int BrandID)
+        {
+            try
+            {
+
+                Service.DeleteLabelBrand(BrandID);
+                Response.Redirect("~/Default.aspx");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, String.Format("Ett fel inträffade när kontakten med ID {0} skulle tas bort", BrandID)); ;
+            }
+        }
+
     }
 }

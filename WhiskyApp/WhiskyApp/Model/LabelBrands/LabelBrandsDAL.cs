@@ -62,6 +62,47 @@ namespace WhiskyApp.Model
 
 
 
+        //Metoden DeleteContact tar bort en kontaktuppgift
+        public void DeleteLabelBrand(int brandID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_DeleteWhisky", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@BrandID", SqlDbType.Int, 4).Value = brandID;
+
+                    //Öppnar anslutning till databasen samt "ExecuteNonQuery" kommandot för att plocka bort information.
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Ett fel uppstod när uppgifterna plockades bort från databasen.");
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
