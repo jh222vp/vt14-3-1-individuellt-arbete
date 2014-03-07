@@ -19,6 +19,8 @@
                 ItemType="WhiskyApp.Model.LabelBrands"
                 InsertMethod="AddWhiskyView_InsertItem">
 
+                <p>cf</p>
+
 
 
             <ItemTemplate>
