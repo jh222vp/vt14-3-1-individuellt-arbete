@@ -51,5 +51,31 @@ namespace WhiskyApp.Model
                 }
             }
         }
+
+
+
+        public static void InsertWhisky(WhiskyModel whiskyModel)
+        {
+            using (SqlConnection conn = CreateConnection())
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddWhiskyModel", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Model", SqlDbType.VarChar, 50).Value = whiskyModel.Model;
+                    cmd.Parameters.Add("@BrandID", SqlDbType.Int, 4).Value = whiskyModel.BrandID;
+                    cmd.Parameters.Add("@ModelID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                    //Öppnar anslutning till databasen samt "ExecuteNonQuery" kommandot för att "INSERT" till databasen
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    whiskyModel.ModelID = (int)cmd.Parameters["@ModelID"].Value;
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Error i åtkomstlagret i databasen");
+                }
+        }
     }
 }

@@ -9,12 +9,16 @@ namespace WhiskyApp.Model.Validation
     public static class ValidationExtensions
     {
         //Denna metod är en utökning av klassen LabelBrandsDAL, medmera, 
-        public static bool Validate(this LabelBrands instance, out ICollection<ValidationResult> validationResults)
+
+        //this object gör så vi får på objektet istället för klassen 
+        public static bool Validate(this object instance, out ICollection<ValidationResult> validationResults)
         {
             var validationContext = new ValidationContext(instance);
             validationResults = new List<ValidationResult>();
             return Validator.TryValidateObject(instance, validationContext, validationResults, true);
         }
+
+
     }
 }
 

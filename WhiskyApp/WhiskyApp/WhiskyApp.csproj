@@ -59,7 +59,9 @@
   <ItemGroup>
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\AddLabelBrandWhisky\AddWhisky.aspx" />
+    <Content Include="Pages\AddLabelBrandWhisky\AddBottle\BottlePropertyAdd.aspx" />
+    <Content Include="Pages\AddLabelBrandWhisky\AddModelWhisky\ModelWhiskyAddd.aspx" />
+    <Content Include="Pages\AddLabelBrandWhisky\AddWhiskeyBrandName\WhiskyBrandNameAdd.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,16 +86,38 @@
     <Compile Include="Model\ModelTable\ModelDAL.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Validation\ValidationExtensions.cs" />
-    <Compile Include="Pages\AddLabelBrandWhisky\AddWhisky.aspx.cs">
-      <DependentUpon>AddWhisky.aspx</DependentUpon>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddBottle\BottlePropertyAdd.aspx.cs">
+      <DependentUpon>BottlePropertyAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\AddLabelBrandWhisky\AddWhisky.aspx.designer.cs">
-      <DependentUpon>AddWhisky.aspx</DependentUpon>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddBottle\BottlePropertyAdd.aspx.designer.cs">
+      <DependentUpon>BottlePropertyAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddModelWhisky\ModelWhiskyAddd.aspx.cs">
+      <DependentUpon>ModelWhiskyAddd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddModelWhisky\ModelWhiskyAddd.aspx.designer.cs">
+      <DependentUpon>ModelWhiskyAddd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddWhiskeyBrandName\WhiskyBrandNameAdd.aspx.cs">
+      <DependentUpon>WhiskyBrandNameAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddWhiskeyBrandName\WhiskyBrandNameAdd.aspx.designer.cs">
+      <DependentUpon>WhiskyBrandNameAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

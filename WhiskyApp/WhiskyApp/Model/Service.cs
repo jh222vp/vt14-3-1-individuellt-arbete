@@ -43,7 +43,7 @@ namespace WhiskyApp.Model
             LabelBrandsDAL.DeleteLabelBrand(brandID);
         }
 
-        //Undersöker värdet egenskapen ContactId. Har ContactId värdet 0 är det en ny post. Annars en uppdatering.
+        //Undersöker värdet egenskapen BrandID. Har BrandID värdet 0 är det en ny post. Annars en uppdatering.
         public static void SaveLabelBrands(LabelBrands labelBrands)
         {
 
@@ -66,5 +66,49 @@ namespace WhiskyApp.Model
             }
         }
 
+        public static void SaveModel(WhiskyModel whiskymodel)
+        {
+
+            ICollection<ValidationResult> validationResults;
+            if (!whiskymodel.Validate(out validationResults))
+                
+            {
+                var ex = new ValidationException("Objektet kunde inte valideras");
+                ex.Data.Add("ValidationResults", validationResults);
+                throw ex;
+            }
+
+
+            if (whiskymodel.ModelID == 0)
+            {
+                ModelDAL.InsertWhisky(whiskymodel);
+            }
+            else
+            {
+                //LabelBrandsDAL.UpdateContact(labelBrands);
+            }
+        }
+
+        public static void SaveBottleProperties(BottleTable.Bottle bottle)
+        {
+
+            ICollection<ValidationResult> validationModelResults;
+            if (!bottle.Validate(out validationModelResults))
+            {
+                var ex = new ValidationException("Objektet kunde inte valideras");
+                ex.Data.Add("ValidationResults", validationModelResults);
+                throw ex;
+            }
+
+
+            if (bottle.BottleID == 0)
+            {
+                BottleTable.BottleDAL.InsertBottleProperties(bottle);
+            }
+            else
+            {
+                //LabelBrandsDAL.UpdateContact(labelBrands);
+            }
+        }
     }
 }

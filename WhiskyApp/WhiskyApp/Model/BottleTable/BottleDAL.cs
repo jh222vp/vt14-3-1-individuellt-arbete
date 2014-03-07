@@ -32,7 +32,6 @@ namespace WhiskyApp.Model.BottleTable
                         var YearIndex = reader.GetOrdinal("Year");
                         var PriceIndex = reader.GetOrdinal("Price");
                         var AmountIndex = reader.GetOrdinal("Amount");
-                        var PercentsIndex = reader.GetOrdinal("Percents");
 
                         while (reader.Read())
                         {
@@ -43,7 +42,6 @@ namespace WhiskyApp.Model.BottleTable
                                 Year = reader.GetInt32(YearIndex),
                                 Price = reader.GetDecimal(PriceIndex),
                                 Amount = reader.GetInt32(AmountIndex),
-                                Percents = reader.GetDecimal(PercentsIndex),
                             });
                         }
                     }
@@ -56,5 +54,39 @@ namespace WhiskyApp.Model.BottleTable
                 }
             }
         }
+
+
+        public static void InsertBottleProperties(Bottle bottle)
+        {
+            using (SqlConnection conn = CreateConnection())
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddWhisky", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Year", SqlDbType.Int, 50).Value = bottle.Year;
+                    cmd.Parameters.Add("@Price", SqlDbType.Decimal).Value = bottle.Price;
+                    cmd.Parameters.Add("@Amount", SqlDbType.Int, 50).Value = bottle.Amount;
+
+
+                    cmd.Parameters.Add("@BottleID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                    //Öppnar anslutning till databasen samt "ExecuteNonQuery" kommandot för att "INSERT" till databasen
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    bottle.BottleID = (int)cmd.Parameters["@BottleID"].Value;
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Error i åtkomstlagret i databasen");
+                }
+        }
+
+
+
+
+
+        
     }
 }

@@ -12,7 +12,6 @@ namespace WhiskyApp.Model
         
 
         [Required(ErrorMessage = "En Epost adress måste anges")]
-        [EmailAddress(ErrorMessage = "Eposten måste vara korrekt")]
         public string Brand { get; set; }
     }
 }

@@ -10,9 +10,13 @@ namespace WhiskyApp.App_Start
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapPageRoute("AddWhsiky",
-                "Ny/Whisky",
-                "~/Pages/AddLabelBrandWhisky/AddWhisky.aspx");
+            routes.MapPageRoute("ModelWhisky",
+                "Ny/ModelWhisky",
+                "~/Pages/AddLabelBrandWhisky/AddModelWhisky/ModelWhiskyAddd.aspx");
+
+            routes.MapPageRoute("WhiskyBrand",
+                "Ny/WhiskyBrand",
+                "~/Pages/AddLabelBrandWhisky/AddWhiskeyBrandName/WhiskyBrandNameAdd.aspx"); 
 
             routes.MapPageRoute("Defualt",
                 "",
