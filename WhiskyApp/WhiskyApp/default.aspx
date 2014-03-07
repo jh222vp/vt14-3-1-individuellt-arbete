@@ -24,9 +24,9 @@
                 
                 SelectMethod="WhiskyListView_GetData"
                 DeleteMethod="ContactListView_DeleteItem"
-                
-
                 DataKeyNames="BrandID">
+
+
 
 
             <LayoutTemplate>
@@ -44,7 +44,11 @@
 
 
                 </LayoutTemplate>
-                
+             
+
+
+
+
 
                 <ItemTemplate>
                     <tr>
@@ -70,6 +74,7 @@
              <asp:ListView ID="WhiskyModelListView" runat="server"
                 ItemType="WhiskyApp.Model.WhiskyModel"
                 SelectMethod="WhiskyModelListView_GetData">
+
                 <LayoutTemplate>
                     <table class="table1">
                         <tr>
@@ -94,12 +99,6 @@
                         </td>
                     </tr>
                 </ItemTemplate>
-        
-
-
-
-
-
                  </asp:ListView>
 
 

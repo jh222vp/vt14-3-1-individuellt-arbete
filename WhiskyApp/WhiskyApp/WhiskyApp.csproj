@@ -58,15 +58,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Pages\AddLabelBrandWhisky\AddWhisky.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BundleConfig.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\BottleTable\Bottle.cs" />
     <Compile Include="Model\BottleTable\BottleDAL.cs" />
@@ -77,6 +84,13 @@
     <Compile Include="Model\ModelTable\ModelDAL.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Validation\ValidationExtensions.cs" />
+    <Compile Include="Pages\AddLabelBrandWhisky\AddWhisky.aspx.cs">
+      <DependentUpon>AddWhisky.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddLabelBrandWhisky\AddWhisky.aspx.designer.cs">
+      <DependentUpon>AddWhisky.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
