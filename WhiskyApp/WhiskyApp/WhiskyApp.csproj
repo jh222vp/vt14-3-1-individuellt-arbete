@@ -57,23 +57,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\AddLabelBrandWhisky\AddBottle\BottlePropertyAdd.aspx" />
     <Content Include="Pages\AddLabelBrandWhisky\AddModelWhisky\ModelWhiskyAddd.aspx" />
     <Content Include="Pages\AddLabelBrandWhisky\AddWhiskeyBrandName\WhiskyBrandNameAdd.aspx" />
+    <Content Include="Pages\Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BundleConfig.cs" />
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -106,6 +99,13 @@
     </Compile>
     <Compile Include="Pages\AddLabelBrandWhisky\AddWhiskeyBrandName\WhiskyBrandNameAdd.aspx.designer.cs">
       <DependentUpon>WhiskyBrandNameAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

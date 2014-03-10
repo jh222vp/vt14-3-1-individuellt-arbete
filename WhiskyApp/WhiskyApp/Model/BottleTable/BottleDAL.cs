@@ -62,9 +62,11 @@ namespace WhiskyApp.Model.BottleTable
 
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddWhisky", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddBottleProperties", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                   
+                    cmd.Parameters.Add("@ModelID", SqlDbType.Int, 50).Value = bottle.ModelID;
                     cmd.Parameters.Add("@Year", SqlDbType.Int, 50).Value = bottle.Year;
                     cmd.Parameters.Add("@Price", SqlDbType.Decimal).Value = bottle.Price;
                     cmd.Parameters.Add("@Amount", SqlDbType.Int, 50).Value = bottle.Amount;

@@ -10,6 +10,10 @@ namespace WhiskyApp.Model.BottleTable
     {
         public int BottleID { get; set; }
 
+        public int BrandID { get; set; }
+
+        public int ModelID { get; set; }
+
         [Required(ErrorMessage = "En Epost adress måste anges")]
         public int Year { get; set; }
 

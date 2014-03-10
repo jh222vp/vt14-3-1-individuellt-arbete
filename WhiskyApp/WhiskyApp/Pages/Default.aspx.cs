@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WhiskyApp.Model;
 
-namespace WhiskyApp
+namespace WhiskyApp.Pages
 {
-    public partial class _default : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
         //Fältet _service
         private Service _service;
@@ -22,7 +22,7 @@ namespace WhiskyApp
         {
             if (Session["AddUserSuccess"] as bool? == true)
             {
-                UploadSuccess.Visible = true;
+               
                 Session.Remove("AddUserSuccess");
             }
         }
@@ -75,7 +75,7 @@ namespace WhiskyApp
                 ModelState.AddModelError(String.Empty, String.Format("Ett fel inträffade när kontakten med ID {0} skulle tas bort", BrandID)); ;
             }
         }
-        
+
         public void ContactListView_InsertItem(LabelBrands labelBrands)
         {
             try

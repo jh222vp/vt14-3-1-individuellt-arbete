@@ -1,18 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="WhiskyApp._default" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>WhiskyApp</title>
-</head>
-<body>
-    <form id="form1" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WhiskyApp.Pages.Default" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
 
-        <asp:PlaceHolder ID="UploadSuccess" runat="server" Visible="false">
-            <p>Det gick kanon att lägga till en användare</p>
-        </asp:PlaceHolder>
     
             <%--  --%>
     <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" runat="server" ShowModelStateErrors="false"/>
@@ -135,31 +124,6 @@
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

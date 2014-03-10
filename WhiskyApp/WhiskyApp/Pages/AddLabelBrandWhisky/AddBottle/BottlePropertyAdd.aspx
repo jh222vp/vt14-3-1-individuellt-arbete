@@ -41,8 +41,26 @@
                         <asp:TextBox ID="TextBox3" runat="server" Text='<%# BindItem.Amount %>' MaxLength="50" />
                     </td>
                     <td>
-                        <asp:LinkButton ID="LinkButton3" runat="server" CommandName="Insert" Text="Lägg till" ></asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton4" runat="server" CommandName="Cancel" CausesValidation="false" Text="Rensa" ></asp:LinkButton>
+                    
+<%--                    <asp:DropDownList ID="DropDownBrand"
+                        ItemType="WhiskyApp.Model.LabelBrands"
+                        runat="server" DataTextField="Brand"
+                        SelectedValue='<%# BindItem.BottleID %>'
+                        DataValueField="BrandID"
+                        SelectMethod="WhiskyListView_GetData"></asp:DropDownList>--%>
+
+                    </td>
+                    <td>
+
+
+                    <asp:DropDownList ID="DropDownModel"
+                        ItemType="WhiskyApp.Model.WhiskyModel"
+                        runat="server" DataTextField="Model"
+                        SelectedValue='<%# BindItem.ModelID %>'
+                        DataValueField="ModelID"
+                        SelectMethod="WhiskyListModelView_GetData"></asp:DropDownList>
+                        
+                        <asp:Button ID="Button1" runat="server" Text="Lägg till" CommandName="insert" />
                     </td>
                 </tr>
             </InsertItemTemplate>

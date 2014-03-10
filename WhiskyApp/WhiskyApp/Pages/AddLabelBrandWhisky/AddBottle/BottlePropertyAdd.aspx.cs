@@ -18,6 +18,18 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddBottle
         {
             return Service.GetBottleInfo();
         }
+        public IEnumerable<Model.WhiskyModel> AddWhiskyModelView_GetData()
+        {
+            return Service.GetWhiskyModel();
+        }
+        public IEnumerable<LabelBrands> AddWhiskyView_GetData()
+        {
+            return Service.GetWhiskys();
+        }
+
+        public DropDownList BrandDropDown { get; set; }
+        public DropDownList ModelDropDown { get; set; }
+
         public void AddBottleWhiskyView_InsertItem(Model.BottleTable.Bottle bottle)
         {
             try
@@ -32,6 +44,18 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddBottle
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade när kontakten skapades");
             }
         }
+
+        public IEnumerable<LabelBrands> WhiskyListView_GetData()
+        {
+            return Service.GetWhiskys();
+           
+        }
+        public IEnumerable<WhiskyModel> WhiskyListModelView_GetData()
+        {
+            return Service.GetWhiskyModel();
+
+        }
+        
 
 
     }

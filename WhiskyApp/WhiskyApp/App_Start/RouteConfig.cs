@@ -16,11 +16,15 @@ namespace WhiskyApp.App_Start
 
             routes.MapPageRoute("WhiskyBrand",
                 "Ny/WhiskyBrand",
-                "~/Pages/AddLabelBrandWhisky/AddWhiskeyBrandName/WhiskyBrandNameAdd.aspx"); 
+                "~/Pages/AddLabelBrandWhisky/AddWhiskeyBrandName/WhiskyBrandNameAdd.aspx");
 
-            routes.MapPageRoute("Defualt",
+            routes.MapPageRoute("WhiskyBottle",
+                "Ny/WhiskyBottle",
+                "~/Pages/AddLabelBrandWhisky/AddBottle/BottlePropertyAdd.aspx");
+
+            routes.MapPageRoute("Default",
                 "",
-                "~/Default.aspx");
+                "~/Pages/Default.aspx");
         }
     }
 }
