@@ -10,7 +10,7 @@
     <div id = "container">
         <asp:ListView ID="WhiskyListView" runat="server"
                 ItemType="WhiskyApp.Model.LabelBrands"
-                
+                UpdateMethod="WhiskyListView_UpdateItem"
                 SelectMethod="WhiskyListView_GetData"
                 DeleteMethod="ContactListView_DeleteItem"
                 DataKeyNames="BrandID">
@@ -35,7 +35,18 @@
                 </LayoutTemplate>
              
 
-
+            <EditItemTemplate> 
+                <tr>
+                    <td>
+                        <asp:TextBox ID="FirstName" runat="server" Text='<%# BindItem.Brand%>' ValidationGroup="Edit"/>
+                    </td>
+                    <td>
+                        <%-- knappar för att spara och avbryta sina val --%>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Update" Text="Spara"></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Cancel" Text="Avbryt"></asp:LinkButton>
+                    </td>
+                </tr>
+            </EditItemTemplate> 
 
 
 
@@ -60,6 +71,7 @@
 
 
             <%-- Nedan lista MODELL av whiskyn --%>
+        <asp:PlaceHolder ID="ModelPlaceHolder" runat="server">
              <asp:ListView ID="WhiskyModelListView" runat="server"
                 ItemType="WhiskyApp.Model.WhiskyModel"
                 SelectMethod="WhiskyModelListView_GetData">
@@ -89,13 +101,14 @@
                     </tr>
                 </ItemTemplate>
                  </asp:ListView>
+            </asp:PlaceHolder>
 
 
 
 
 
 
-            <%-- Nedan lista MODELL av whiskyn --%>
+            <%-- Nedan lista Pris i kronor av whiskyn --%>
              <asp:ListView ID="BottleListView" runat="server"
                 ItemType="WhiskyApp.Model.BottleTable.Bottle"
                 SelectMethod="BottleListView_GetData">
@@ -124,6 +137,7 @@
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
+
         </div>
     </div>
 </asp:Content>

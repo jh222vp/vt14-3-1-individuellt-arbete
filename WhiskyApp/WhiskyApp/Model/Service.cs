@@ -62,7 +62,7 @@ namespace WhiskyApp.Model
             }
             else
             {
-                //LabelBrandsDAL.UpdateContact(labelBrands);
+                LabelBrandsDAL.UpdateWhisky(labelBrands);
             }
         }
 
@@ -110,5 +110,10 @@ namespace WhiskyApp.Model
                 //LabelBrandsDAL.UpdateContact(labelBrands);
             }
         }
+        public LabelBrands GetlabelBrand(int labelBrandID)
+        {
+            return Model.LabelBrandsDAL.GetWhiskyBrand(labelBrandID);
+        }
+        
     }
 }

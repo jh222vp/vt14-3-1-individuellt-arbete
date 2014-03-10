@@ -68,7 +68,7 @@ namespace WhiskyApp.Pages
             {
 
                 Service.DeleteLabelBrand(BrandID);
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/Pages/Default.aspx");
             }
             catch (Exception)
             {
@@ -88,6 +88,28 @@ namespace WhiskyApp.Pages
             catch (Exception)
             {
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade när kontakten skapades");
+            }
+        }
+
+        
+        
+        
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void WhiskyListView_UpdateItem(int brandID)
+        {
+            var item = Service.GetlabelBrand(brandID);
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", brandID));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+                Service.SaveLabelBrands(item);
             }
         }
     }
