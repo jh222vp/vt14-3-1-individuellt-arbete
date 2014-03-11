@@ -27,46 +27,25 @@ namespace WhiskyApp.Pages
             }
         }
 
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
         public IEnumerable<LabelBrands> WhiskyListView_GetData()
         {
             return Service.GetWhiskys();
         }
 
-
-
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
         public IEnumerable<WhiskyModel> WhiskyModelListView_GetData()
         {
             return Service.GetWhiskyModel();
         }
-
-
-
-
 
         public IEnumerable<WhiskyApp.Model.BottleTable.Bottle> BottleListView_GetData()
         {
             return Service.GetBottleInfo();
         }
 
-
-
         public void ContactListView_DeleteItem(int BrandID)
         {
             try
             {
-
                 Service.DeleteLabelBrand(BrandID);
                 Response.Redirect("~/Pages/Default.aspx");
             }
@@ -75,6 +54,12 @@ namespace WhiskyApp.Pages
                 ModelState.AddModelError(String.Empty, String.Format("Ett fel inträffade när kontakten med ID {0} skulle tas bort", BrandID)); ;
             }
         }
+
+
+
+
+
+
 
         public void ContactListView_InsertItem(LabelBrands labelBrands)
         {
@@ -93,6 +78,14 @@ namespace WhiskyApp.Pages
 
         
         
+
+
+
+
+
+
+
+
         
         // The id parameter name should match the DataKeyNames value set on the control
         public void WhiskyListView_UpdateItem(int brandID)
@@ -110,6 +103,58 @@ namespace WhiskyApp.Pages
             {
                 // Save changes here, e.g. MyDataLayer.SaveChanges();
                 Service.SaveLabelBrands(item);
+            }
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void WhiskyModelListView_DeleteItem(int ModelID)
+        {
+            try
+            {
+                Service.DeleteModelWhisky(ModelID);
+                Response.Redirect("~/Pages/Default.aspx");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, String.Format("Ett fel inträffade när kontakten med ID {0} skulle tas bort", ModelID)); ;
+            }
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void WhiskyModelListView_UpdateItem(int ModelID)
+        {
+            var item = Service.GetWhiskyModel(ModelID);
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", ModelID));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+                Service.SaveModel(item);
+            }
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void BottleListView_UpdateItem(int BottleID)
+        {
+            var item = Service.GetBottle(BottleID);
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", BottleID));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+                Service.SaveBottleProperties(item);
             }
         }
     }

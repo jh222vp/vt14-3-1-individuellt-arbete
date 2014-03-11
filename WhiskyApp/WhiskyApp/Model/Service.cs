@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using WhiskyApp.Model.Validation;
 using WhiskyApp.Model;
+using WhiskyApp.Pages;
 using System.ComponentModel.DataAnnotations;
 
 namespace WhiskyApp.Model
@@ -12,12 +13,23 @@ namespace WhiskyApp.Model
     {
         
         private static LabelBrandsDAL _labelBrandsDAL;
+        private static ModelDAL _modelDAL;
 
        
+
         public static LabelBrandsDAL LabelBrandsDAL
         {
             get { return _labelBrandsDAL ?? (_labelBrandsDAL = new LabelBrandsDAL()); }
         }
+
+        public static ModelDAL WhiskyModelDAL
+        {
+            get { return _modelDAL ?? (_modelDAL = new ModelDAL()); }
+        }
+
+
+
+
 
         public static IEnumerable<LabelBrands> GetWhiskys()
         {
@@ -43,6 +55,46 @@ namespace WhiskyApp.Model
             LabelBrandsDAL.DeleteLabelBrand(brandID);
         }
 
+
+
+
+
+
+
+        //MODEL!!!!!
+
+
+        public static void DeleteLabelBrand(WhiskyModel whiskyModelID)
+        {
+            DeleteModelWhisky(whiskyModelID.ModelID);
+        }
+
+        public static void DeleteModelWhisky(int modelID)
+        {
+            ModelDAL.DeleteModel(modelID);
+        }
+
+        //MODEL!!!
+
+
+        public static WhiskyModel GetWhiskyModel(int modelID)
+        {
+            return WhiskyModelDAL.GetWhiskyModelByID(modelID);
+        }
+
+
+
+        public static BottleTable.Bottle GetBottle(int BottleID)
+        {
+            return BottleTable.BottleDAL.GetSpecificBottlePropertyID(BottleID);
+        }
+
+
+
+
+
+
+
         //Undersöker värdet egenskapen BrandID. Har BrandID värdet 0 är det en ny post. Annars en uppdatering.
         public static void SaveLabelBrands(LabelBrands labelBrands)
         {
@@ -54,7 +106,6 @@ namespace WhiskyApp.Model
                 ex.Data.Add("ValidationResults", validationResults);
                 throw ex;
             }
-
 
             if (labelBrands.BrandID == 0)
             {
@@ -71,23 +122,32 @@ namespace WhiskyApp.Model
 
             ICollection<ValidationResult> validationResults;
             if (!whiskymodel.Validate(out validationResults))
-                
             {
                 var ex = new ValidationException("Objektet kunde inte valideras");
                 ex.Data.Add("ValidationResults", validationResults);
                 throw ex;
             }
 
-
             if (whiskymodel.ModelID == 0)
             {
-                ModelDAL.InsertWhisky(whiskymodel);
+                WhiskyModelDAL.InsertWhisky(whiskymodel);
             }
             else
             {
-                //LabelBrandsDAL.UpdateContact(labelBrands);
+                WhiskyModelDAL.GetModelUpdate(whiskymodel);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
 
         public static void SaveBottleProperties(BottleTable.Bottle bottle)
         {
@@ -107,7 +167,7 @@ namespace WhiskyApp.Model
             }
             else
             {
-                //LabelBrandsDAL.UpdateContact(labelBrands);
+                BottleTable.BottleDAL.GetBottleUpdate(bottle);
             }
         }
         public LabelBrands GetlabelBrand(int labelBrandID)

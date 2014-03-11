@@ -74,7 +74,11 @@
         <asp:PlaceHolder ID="ModelPlaceHolder" runat="server">
              <asp:ListView ID="WhiskyModelListView" runat="server"
                 ItemType="WhiskyApp.Model.WhiskyModel"
-                SelectMethod="WhiskyModelListView_GetData">
+                SelectMethod="WhiskyModelListView_GetData"
+                UpdateMethod="WhiskyModelListView_UpdateItem"
+                DeleteMethod="WhiskyModelListView_DeleteItem"
+                DataKeyNames="ModelID">
+                 
 
                 <LayoutTemplate>
                     <table class="table1">
@@ -97,9 +101,23 @@
                         </td>
                         <td class="command">
                             <%-- knappar för att ta bort och redigera kunduppgifter --%>
+                            <%--<asp:LinkButton ID="LinkButton1" runat="server" CommandName="Delete" Text="Ta bort" CausesValidation="false" OnClientClick="return confirm ('Är du säker på att du vill ta bort användaren?')" />--%>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Edit" Text="Redigera" CausesValidation="false" />
                         </td>
                     </tr>
                 </ItemTemplate>
+                 <EditItemTemplate>
+                     <tr>
+                         <td>
+                             <asp:TextBox ID="TextBox1" Text='<%# BindItem.Model%>' runat="server"></asp:TextBox>
+                         </td>
+                    <td>
+                        <%-- knappar för att spara och avbryta sina val --%>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Update" Text="Spara"></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Cancel" Text="Avbryt"></asp:LinkButton>
+                    </td>
+                     </tr>
+                 </EditItemTemplate>
                  </asp:ListView>
             </asp:PlaceHolder>
 
@@ -111,12 +129,21 @@
             <%-- Nedan lista Pris i kronor av whiskyn --%>
              <asp:ListView ID="BottleListView" runat="server"
                 ItemType="WhiskyApp.Model.BottleTable.Bottle"
+                DataKeyNames="BottleID"
+                UpdateMethod="BottleListView_UpdateItem"
                 SelectMethod="BottleListView_GetData">
+
                 <LayoutTemplate>
                     <table class="table1">
                         <tr>
                             <th>
                                 Pris i kronor
+                            </th>
+                            <th>
+                                Antal år
+                            </th>
+                            <th>
+                                Antal mängd i cl
                             </th>
                         </tr>
                         <th>
@@ -131,11 +158,36 @@
                         <td>
                             <%#: Item.Price %>
                         </td>
+                         <td>
+                            <%#: Item.Year %>
+                        </td>
+                        <td>
+                            <%#: Item.Amount %>
+                        </td>
                         <td class="command">
                             <%-- knappar för att ta bort och redigera kunduppgifter --%>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Edit" Text="Redigera" CausesValidation="false" />
                         </td>
                     </tr>
                 </ItemTemplate>
+                <EditItemTemplate>
+                     <tr>
+                         <td>
+                             <asp:TextBox ID="TextBox1" Text='<%# BindItem.Price%>' runat="server"></asp:TextBox>
+                         </td>
+                        <td>
+                             <asp:TextBox ID="TextBox2" Text='<%# BindItem.Year%>' runat="server"></asp:TextBox>
+                         </td>
+                        <td>
+                             <asp:TextBox ID="TextBox3" Text='<%# BindItem.Amount%>' runat="server"></asp:TextBox>
+                         </td>
+                    <td>
+                        <%-- knappar för att spara och avbryta sina val --%>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Update" Text="Spara"></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Cancel" Text="Avbryt"></asp:LinkButton>
+                    </td>
+                     </tr>
+                 </EditItemTemplate>
             </asp:ListView>
 
         </div>

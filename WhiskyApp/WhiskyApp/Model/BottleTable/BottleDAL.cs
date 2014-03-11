@@ -56,6 +56,168 @@ namespace WhiskyApp.Model.BottleTable
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static Bottle GetSpecificBottlePropertyID(int BottleID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_GetBottleByID", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(@"BottleID", SqlDbType.Int, 4).Value = BottleID;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var BottleIDIndex = reader.GetOrdinal("BottleID");
+
+                            return new Bottle
+                            {
+                                BottleID = reader.GetInt32(BottleIDIndex)
+                            };
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Lyckades inte uppdatera whiksymärket");
+                }
+            }
+            //Hamnar aldrig vid returnen nedan. Eftersom catchen fångar fel.
+            return null;
+        }
+
+
+
+
+        //Editerar en existerande modell
+        public static Bottle GetBottleUpdate(Bottle bottle)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_EditBottle", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(@"BottleID", SqlDbType.Int, 4).Value = bottle.BottleID;
+                    cmd.Parameters.Add(@"Year", SqlDbType.Int, 4).Value = bottle.Year;
+                    cmd.Parameters.Add(@"Price", SqlDbType.Decimal, 7).Value = bottle.Price;
+                    cmd.Parameters.Add(@"Amount", SqlDbType.Int, 4).Value = bottle.Amount;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var bottleIDIndex = reader.GetOrdinal("BottleID");
+                            var YearIndex = reader.GetOrdinal("Year");
+                            var PriceIndex = reader.GetOrdinal("Price");
+                            var AmountIndex = reader.GetOrdinal("Amount");
+
+                            return new Bottle
+                            {
+                                BottleID = reader.GetInt32(bottleIDIndex),
+                                Year = reader.GetInt32(YearIndex),
+                                Price = reader.GetDecimal(PriceIndex),
+                                Amount = reader.GetInt32(AmountIndex)
+                            };
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Lyckades inte uppdatera whiksymärket");
+                }
+            }
+            //Hamnar aldrig vid returnen nedan. Eftersom catchen fångar fel.
+            return null;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static void InsertBottleProperties(Bottle bottle)
         {
             using (SqlConnection conn = CreateConnection())

@@ -181,10 +181,5 @@ namespace WhiskyApp.Model
                 }
             }
         }
-
-
-
-
-
-        }
-    }
+      }
+   }
