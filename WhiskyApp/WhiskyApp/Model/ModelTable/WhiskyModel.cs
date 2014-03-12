@@ -10,10 +10,10 @@ namespace WhiskyApp.Model
     {
         public int ModelID { get; set; }
 
-        [Required(ErrorMessage = "En Epost adress måste anges")]
-        public string Model { get; set; }
-
         public int BrandID { get; set; }
+
+        [Required(ErrorMessage = "En model adress måste anges")]
+        public string Model { get; set; }
 
     }
 }

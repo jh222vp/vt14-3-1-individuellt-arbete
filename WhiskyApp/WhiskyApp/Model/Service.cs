@@ -27,10 +27,6 @@ namespace WhiskyApp.Model
             get { return _modelDAL ?? (_modelDAL = new ModelDAL()); }
         }
 
-
-
-
-
         public static IEnumerable<LabelBrands> GetWhiskys()
         {
             return LabelBrandsDAL.GetWhiskyBrands();
@@ -56,14 +52,6 @@ namespace WhiskyApp.Model
         }
 
 
-
-
-
-
-
-        //MODEL!!!!!
-
-
         public static void DeleteLabelBrand(WhiskyModel whiskyModelID)
         {
             DeleteModelWhisky(whiskyModelID.ModelID);
@@ -74,25 +62,16 @@ namespace WhiskyApp.Model
             ModelDAL.DeleteModel(modelID);
         }
 
-        //MODEL!!!
-
 
         public static WhiskyModel GetWhiskyModel(int modelID)
         {
             return WhiskyModelDAL.GetWhiskyModelByID(modelID);
         }
 
-
-
         public static BottleTable.Bottle GetBottle(int BottleID)
         {
             return BottleTable.BottleDAL.GetSpecificBottlePropertyID(BottleID);
         }
-
-
-
-
-
 
 
         //Undersöker värdet egenskapen BrandID. Har BrandID värdet 0 är det en ny post. Annars en uppdatering.
@@ -137,17 +116,6 @@ namespace WhiskyApp.Model
                 WhiskyModelDAL.GetModelUpdate(whiskymodel);
             }
         }
-
-
-
-
-
-
-
-
-
-
-
 
         public static void SaveBottleProperties(BottleTable.Bottle bottle)
         {

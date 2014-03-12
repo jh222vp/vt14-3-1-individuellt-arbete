@@ -47,7 +47,7 @@ namespace WhiskyApp.Model
                 }
                 catch (Exception)
                 {
-                    throw;
+                    throw new ApplicationException("Lyckades inte lista alla märken");
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace WhiskyApp.Model
                 }
                 catch (Exception)
                 {
-                    throw new ApplicationException("Lyckades inte uppdatera whiksymärket");
+                    throw new ApplicationException("Lyckades inte uppdatera whiskymärket");
                 }
             }
             //Hamnar aldrig vid returnen nedan. Eftersom catchen fångar fel.

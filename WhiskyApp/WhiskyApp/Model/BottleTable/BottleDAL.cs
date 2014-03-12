@@ -50,7 +50,7 @@ namespace WhiskyApp.Model.BottleTable
                 }
                 catch (Exception)
                 {
-                    throw;
+                    throw new ApplicationException("Lyckades inte hämta butlejegenskaperna");
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace WhiskyApp.Model.BottleTable
                 }
                 catch (Exception)
                 {
-                    throw new ApplicationException("Lyckades inte uppdatera whiksymärket");
+                    throw new ApplicationException("Lyckades inte hämta det specifika whiskymärket");
                 }
             }
             //Hamnar aldrig vid returnen nedan. Eftersom catchen fångar fel.
@@ -177,47 +177,6 @@ namespace WhiskyApp.Model.BottleTable
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public static void InsertBottleProperties(Bottle bottle)
         {
             using (SqlConnection conn = CreateConnection())
@@ -246,11 +205,5 @@ namespace WhiskyApp.Model.BottleTable
                     throw new ApplicationException("Error i åtkomstlagret i databasen");
                 }
         }
-
-
-
-
-
-        
     }
 }

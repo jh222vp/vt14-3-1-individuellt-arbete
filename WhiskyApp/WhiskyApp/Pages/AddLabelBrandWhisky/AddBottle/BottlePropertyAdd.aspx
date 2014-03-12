@@ -6,12 +6,9 @@
     <asp:ListView ID="AddBottleWhiskyView" runat="server"
                 SelectMethod="AddWhiskyBottleView_GetData"
                 ItemType="WhiskyApp.Model.BottleTable.Bottle"
-
                 InsertMethod="AddBottleWhiskyView_InsertItem"
                 DataKeyNames="BottleID" 
                 InsertItemPosition="FirstItem">
-
-
                 <ItemTemplate>
                     <tr>
                         <td>
@@ -41,18 +38,6 @@
                         <asp:TextBox ID="TextBox3" runat="server" Text='<%# BindItem.Amount %>' MaxLength="50" />
                     </td>
                     <td>
-                    
-<%--                    <asp:DropDownList ID="DropDownBrand"
-                        ItemType="WhiskyApp.Model.LabelBrands"
-                        runat="server" DataTextField="Brand"
-                        SelectedValue='<%# BindItem.BottleID %>'
-                        DataValueField="BrandID"
-                        SelectMethod="WhiskyListView_GetData"></asp:DropDownList>--%>
-
-                    </td>
-                    <td>
-
-
                     <asp:DropDownList ID="DropDownModel"
                         ItemType="WhiskyApp.Model.WhiskyModel"
                         runat="server" DataTextField="Model"
@@ -64,12 +49,5 @@
                     </td>
                 </tr>
             </InsertItemTemplate>
-
-                <%-- HÄR SLUTAR LISTVIEW!!!!!!! --%>
-                <%-- HÄR SLUTAR LISTVIEW!!!!!!! --%>
-                </asp:ListView>
-                <%-- HÄR SLUTAR LISTVIEW!!!!!!! --%>
-                <%-- HÄR SLUTAR LISTVIEW!!!!!!! --%>
-
-
+            </asp:ListView>
 </asp:Content>

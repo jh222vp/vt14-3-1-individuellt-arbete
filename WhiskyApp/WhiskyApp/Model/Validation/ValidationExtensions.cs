@@ -17,8 +17,5 @@ namespace WhiskyApp.Model.Validation
             validationResults = new List<ValidationResult>();
             return Validator.TryValidateObject(instance, validationContext, validationResults, true);
         }
-
-
     }
 }
-
