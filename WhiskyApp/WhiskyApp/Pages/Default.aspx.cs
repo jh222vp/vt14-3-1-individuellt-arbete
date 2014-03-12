@@ -12,6 +12,7 @@ namespace WhiskyApp.Pages
     {
         //Fältet _service
         private Service _service;
+        private int id;
 
         private Service Service
         {
@@ -57,10 +58,6 @@ namespace WhiskyApp.Pages
 
 
 
-
-
-
-
         public void ContactListView_InsertItem(LabelBrands labelBrands)
         {
             try
@@ -75,11 +72,6 @@ namespace WhiskyApp.Pages
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade när kontakten skapades");
             }
         }
-
-        
-        
-
-
 
 
 
@@ -111,6 +103,7 @@ namespace WhiskyApp.Pages
         {
             try
             {
+               
                 Service.DeleteModelWhisky(ModelID);
                 Response.Redirect("~/Pages/Default.aspx");
             }
@@ -121,14 +114,15 @@ namespace WhiskyApp.Pages
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
-        public void WhiskyModelListView_UpdateItem(int ModelID)
+        public void WhiskyModelListView_UpdateItem(int modelID)
         {
-            var item = Service.GetWhiskyModel(ModelID);
+            id = modelID;
+            var item = Service.GetWhiskyModel(modelID);
             // Load the item here, e.g. item = MyDataLayer.Find(id);
             if (item == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", ModelID));
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", modelID));
                 return;
             }
             TryUpdateModel(item);
@@ -138,6 +132,7 @@ namespace WhiskyApp.Pages
                 Service.SaveModel(item);
             }
         }
+
 
         // The id parameter name should match the DataKeyNames value set on the control
         public void BottleListView_UpdateItem(int BottleID)

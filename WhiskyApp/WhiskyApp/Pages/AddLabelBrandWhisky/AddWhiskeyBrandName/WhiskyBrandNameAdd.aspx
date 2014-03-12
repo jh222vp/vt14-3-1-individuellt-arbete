@@ -32,10 +32,9 @@
                     </td>
                     <td>
                         <asp:Button ID="Add" runat="server" Text="Lägg till" CommandName="insert" />
-                       
+                       <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Ett märke måste fyllas!!!!!!! i" ControlToValidate="Brand" Display="None"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Ett märke måste fyllas!!!!!!! i" ControlToValidate="Brand" Display="None"></asp:RequiredFieldValidator>
             </InsertItemTemplate>
         </asp:ListView>
     </div>

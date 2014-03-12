@@ -1,3 +1,15 @@
-﻿body {
+﻿#container table, #container div {
+    float: left;
+}
+body {
     background-color:orange;
+}
+#ModelTable {
+    margin-left:4%;
+}
+#BottleTable {
+    margin-left:4%;
+}
+#menu {
+   
 }

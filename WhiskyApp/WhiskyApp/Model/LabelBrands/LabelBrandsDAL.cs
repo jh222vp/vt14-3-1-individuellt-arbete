@@ -57,11 +57,6 @@ namespace WhiskyApp.Model
 
 
 
-
-
-
-
-
         //Metoden DeleteContact tar bort en kontaktuppgift
         public void DeleteLabelBrand(int brandID)
         {
@@ -69,7 +64,7 @@ namespace WhiskyApp.Model
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("appSchema.usp_DeleteWhisky", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_DeleteWhiskyBrandName", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@BrandID", SqlDbType.Int, 4).Value = brandID;
@@ -84,7 +79,6 @@ namespace WhiskyApp.Model
                 }
             }
         }
-
 
 
 
@@ -125,17 +119,13 @@ namespace WhiskyApp.Model
 
 
 
-
-
-
-
         public void InsertWhisky(LabelBrands labelbrands)
         {
             using (SqlConnection conn = CreateConnection())
 
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddWhisky", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.usp_AddWhiskyBrand", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@Brand", SqlDbType.VarChar, 50).Value = labelbrands.Brand;
@@ -152,7 +142,6 @@ namespace WhiskyApp.Model
                     throw new ApplicationException("Error i åtkomstlagret i databasen");
                 }
         }
-
 
 
 
@@ -181,5 +170,5 @@ namespace WhiskyApp.Model
                 }
             }
         }
-      }
-   }
+    }
+}
