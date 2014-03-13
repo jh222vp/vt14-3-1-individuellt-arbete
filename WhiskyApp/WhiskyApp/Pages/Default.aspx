@@ -9,8 +9,7 @@
         <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="Update" runat="server" />
 
 
-        <div id="logo">
-        </div>
+
         <div id="container">
             <div id="bigtable">
             <asp:ListView ID="WhiskyListView" runat="server"

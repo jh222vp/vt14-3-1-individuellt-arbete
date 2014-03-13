@@ -8,20 +8,18 @@
     <link href="~/Content/Style.css" rel="stylesheet" />
 </head>
 <body>
+    <div id="logo">
+    </div>
     <form id="form1" runat="server">
         <div id="menu">
-
-
             <asp:HyperLink ID="HyperLink1" NavigateUrl="<%$ RouteUrl:routename=Default %>" runat="server">Default</asp:HyperLink>
-
-            <asp:HyperLink ID="HyperLink2" NavigateUrl="<%$ RouteUrl:routename=WhiskyBrand %>" runat="server">Brand</asp:HyperLink>
-
-            <asp:HyperLink ID="HyperLink3" NavigateUrl="<%$ RouteUrl:routename=ModelWhisky %>" runat="server">Model</asp:HyperLink>
-
-            <asp:HyperLink ID="HyperLink4" NavigateUrl="<%$ RouteUrl:routename=WhiskyBottle %>" runat="server">Bottle</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" NavigateUrl="<%$ RouteUrl:routename=WhiskyBrand %>" runat="server">Lägg till märke</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" NavigateUrl="<%$ RouteUrl:routename=ModelWhisky %>" runat="server">Lägg till modell</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink4" NavigateUrl="<%$ RouteUrl:routename=WhiskyBottle %>" runat="server">Lägg till egenskaper</asp:HyperLink>
+            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
+        
     </form>
 </body>
 </html>

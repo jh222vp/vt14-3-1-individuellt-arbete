@@ -12,7 +12,11 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddBottle
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UploadedPropertiesSuccess"] as bool? == true)
+            {
+                UploadSuccessed.Visible = true;
+                Session.Remove("UploadedPropertiesSuccess");
+            }
         }
         public IEnumerable<Model.BottleTable.Bottle> AddWhiskyBottleView_GetData()
         {
@@ -35,9 +39,11 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddBottle
             try
             {
                 Service.SaveBottleProperties(bottle);
-                Session["AddUserSuccess"] = true;
+                Session["UploadedPropertiesSuccess"] = true;
+                
+                
                 //Redirecten skickar oss vidare till defaultsidan så det inte sker en ny postback
-                //Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/Pages/AddLabelBrandWhisky/AddBottle/BottlePropertyAdd.aspx");
             }
             catch (Exception)
             {
@@ -55,8 +61,5 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddBottle
             return Service.GetWhiskyModel();
 
         }
-        
-
-
     }
 }

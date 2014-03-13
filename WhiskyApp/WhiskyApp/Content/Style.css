@@ -1,8 +1,8 @@
 ﻿#container {
     width:80%;
-    margin-left: 20%;
+    min-height: 400px;
+    margin-left:25%;
     margin-top: 3%;
-    
 }
 #container table, #container div {
     float: left;
@@ -18,8 +18,21 @@ body {
     float:left;
 }
 #menu {
-   
+    background-color:darkblue;
+    padding:10px;
+    width:440px;
+    margin:auto;
+    font:bold;
 }
+    #menu a {
+        text-decoration:none;
+        display:inline;
+        padding:5px;
+        color:red;
+    }
+        #menu a:hover {
+            color:orange;
+        }
 #bigtable {
     border:solid black 2px;
     background-color:white;
@@ -30,4 +43,57 @@ width:670px;
 height:130px;
 margin:auto;
 
+}
+#ModelBorder {
+    
+}
+#BottleProperties {
+    background-color:lightgray;
+    margin-left:37%;
+    margin-top:1%;
+    padding-left:5px;
+    padding-bottom:5px;
+    width:25%;
+    min-height:240px;
+    border: solid black 2px;
+}
+#UpploadSucess {
+    background-color:lightgray;
+    width:20%;
+    margin-left: 40%;
+    font-size:large;
+}
+#ModelTablen {
+    border:solid black 1px;
+    background-color:lightgray;
+    width:340px;
+    height:30px;
+    margin-left:39%;
+    margin-top:2%;
+    margin:auto;
+    padding:10px;
+
+    
+}
+#ModelTemplate {
+    background-color:lightgray;
+    margin-top:-16px;
+    padding:5px;
+    width:21%;
+    margin:auto;
+    text-align:left;
+}
+
+#BrandTemplate ul{
+    background-color:lightgray;
+    margin-top:-16px;
+    padding:5px;
+    width:445px;
+    margin:auto;
+}
+#AddBrand {
+    background-color:lightgray;
+    margin:auto;
+    padding:5px;
+    width:445px;
 }
