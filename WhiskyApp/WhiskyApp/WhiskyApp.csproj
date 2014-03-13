@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\stripe.png" />
+    <Content Include="Content\Images\whisky.png" />
     <Content Include="Content\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="Pages\AddLabelBrandWhisky\AddBottle\BottlePropertyAdd.aspx" />

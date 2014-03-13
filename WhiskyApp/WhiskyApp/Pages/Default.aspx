@@ -8,7 +8,11 @@
         <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" runat="server" ShowModelStateErrors="false" />
         <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="Update" runat="server" />
 
+
+        <div id="logo">
+        </div>
         <div id="container">
+            <div id="bigtable">
             <asp:ListView ID="WhiskyListView" runat="server"
                 ItemType="WhiskyApp.Model.LabelBrands"
                 UpdateMethod="WhiskyListView_UpdateItem"
@@ -172,4 +176,5 @@
             </asp:ListView>
             </div>
         </div>
+            </div>
 </asp:Content>

@@ -1,15 +1,33 @@
-﻿#container table, #container div {
+﻿#container {
+    width:80%;
+    margin-left: 20%;
+    margin-top: 3%;
+    
+}
+#container table, #container div {
     float: left;
 }
 body {
-    background-color:orange;
+    background-image:url('Images/stripe.png');
 }
 #ModelTable {
-    margin-left:4%;
+    padding-left:25px;
 }
 #BottleTable {
-    margin-left:4%;
+    padding-left:25px;
+    float:left;
 }
 #menu {
    
+}
+#bigtable {
+    border:solid black 2px;
+    background-color:white;
+}
+#logo {
+background-image:url('Images/whisky.png');
+width:670px;
+height:130px;
+margin:auto;
+
 }
