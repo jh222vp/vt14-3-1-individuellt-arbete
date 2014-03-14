@@ -11,7 +11,10 @@ namespace WhiskyApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SuccessLiteral.Text = Page.getTempData("Success") as string;
 
+            //Successpanel blir antingen true eller false.
+            SuccessPanel.Visible = !String.IsNullOrWhiteSpace(SuccessLiteral.Text);
         }
     }
 }

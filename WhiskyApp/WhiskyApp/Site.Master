@@ -6,10 +6,20 @@
 <head runat="server">
     <title></title>
     <link href="~/Content/Style.css" rel="stylesheet" />
+
+
 </head>
 <body>
     <div id="logo">
     </div>
+
+    <asp:Panel ID="SuccessPanel" runat="server" Visible="false">
+        <asp:Literal ID="SuccessLiteral" runat="server">
+        </asp:Literal>
+    </asp:Panel>
+
+
+
     <form id="form1" runat="server">
         <div id="menu">
             <asp:HyperLink ID="HyperLink1" NavigateUrl="<%$ RouteUrl:routename=Default %>" runat="server">Default</asp:HyperLink>

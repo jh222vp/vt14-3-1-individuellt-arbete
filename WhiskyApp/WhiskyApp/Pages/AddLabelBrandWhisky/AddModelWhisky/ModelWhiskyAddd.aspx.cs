@@ -29,14 +29,15 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddModelWhisky
             try
             {
                 Service.SaveModel(whiskyModel);
-                Session["AddUserSuccess"] = true;
+                Page.setTempData("Success", "Modellen lades till");
                 //Redirecten skickar oss vidare till defaultsidan så det inte sker en ny postback
-                //Response.Redirect("~/Default.aspx");
+                Response.RedirectToRoute("ModelWhisky");
             }
             catch (Exception)
             {
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade när kontakten skapades");
             }
+
         }
     }
 }

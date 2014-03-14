@@ -25,11 +25,11 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddWhiskeyBrandName
             try
             {
                 Service.SaveLabelBrands(labelBrands);
-                Session["AddUserSuccess"] = true;
+                Page.setTempData("Success", "Märket lades till");
 
 
                 //Redirecten skickar oss vidare till defaultsidan så det inte sker en ny postback
-                //Response.Redirect("~/Default.aspx");
+                Response.RedirectToRoute("WhiskyBrand");
             }
             catch (Exception)
             {
