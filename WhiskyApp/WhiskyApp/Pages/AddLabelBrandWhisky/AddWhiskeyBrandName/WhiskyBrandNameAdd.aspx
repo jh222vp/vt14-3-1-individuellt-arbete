@@ -5,8 +5,6 @@
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowModelStateErrors="false" />
 
 
-
-   <%-- <div id="container">--%>
         <div id="ModelBorder">
             <asp:ListView ID="AddWhiskyView" runat="server"
                 SelectMethod="AddWhiskyView_GetData"
@@ -45,8 +43,6 @@
                         </tr>
                     </div>
                 </InsertItemTemplate>
-
             </asp:ListView>
         </div>
-    <%--</div>--%>
 </asp:Content>

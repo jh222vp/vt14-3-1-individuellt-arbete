@@ -122,9 +122,9 @@
                 <LayoutTemplate>
                     <table class="table1">
                         <tr>
-                            <th>Pris i kronor
+                            <th>Pris i kronor, 
                             </th>
-                            <th>Antal år
+                            <th>Antal år, 
                             </th>
                             <th>Antal mängd i cl
                             </th>

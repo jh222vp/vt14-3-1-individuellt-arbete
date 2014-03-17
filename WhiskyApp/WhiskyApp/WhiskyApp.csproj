@@ -60,6 +60,7 @@
     <Content Include="Content\Images\stripe.png" />
     <Content Include="Content\Images\whisky.png" />
     <Content Include="Content\Style.css" />
+    <Content Include="error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\AddLabelBrandWhisky\AddBottle\BottlePropertyAdd.aspx" />
     <Content Include="Pages\AddLabelBrandWhisky\AddModelWhisky\ModelWhiskyAddd.aspx" />
@@ -71,6 +72,13 @@
     <Compile Include="App_Infrastructure\PageExstension.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BundleConfig.cs" />
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

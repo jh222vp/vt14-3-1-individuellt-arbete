@@ -55,6 +55,10 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Ett år måste fyllas i!" ControlToValidate="Year" Display="None"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Ett pris måste fyllas i!" ControlToValidate="Price" Display="None"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="En mängd måste fyllas i!" ControlToValidate="Amount" Display="None"></asp:RequiredFieldValidator>
+
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Bara siffror!" ControlToValidate="Year" Display="None" ValidationExpression='[0-9]+'></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Bara siffror!" ControlToValidate="Price" Display="None" ValidationExpression='[0-9]+'></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Bara siffror!" ControlToValidate="Amount" Display="None" ValidationExpression='[0-9]+'></asp:RegularExpressionValidator>
                     </td>
                 </tr>
             </div>
