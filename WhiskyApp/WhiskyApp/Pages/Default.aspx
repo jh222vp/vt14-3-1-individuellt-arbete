@@ -18,7 +18,7 @@
                 <LayoutTemplate>
                     <table class="table">
                         <tr>
-                            <th>Märke
+                            <th>Märkee
                             </th>
                         </tr>
                         <th></th>
