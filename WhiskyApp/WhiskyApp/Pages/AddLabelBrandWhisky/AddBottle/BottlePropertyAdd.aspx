@@ -30,7 +30,7 @@
             <div id="BottleProperties">
                 <tr>
                     <td>
-                        <p>År</p>
+                        <p>Antal år på whiskyn</p>
                         <asp:TextBox ID="Year" runat="server" Text='<%# BindItem.Year %>' MaxLength="50" />
                     </td>
                     <td>

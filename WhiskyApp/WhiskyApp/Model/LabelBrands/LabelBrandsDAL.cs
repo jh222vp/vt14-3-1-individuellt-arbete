@@ -10,15 +10,19 @@ namespace WhiskyApp.Model
 {
     public class LabelBrandsDAL : DALBase
     {
-        //GetContacts används för att hämta alla kontaktuppgifter samt kontakatuppgifter
+        //GetWhiskyBrands används för att hämta alla whiskymärken med hjälp av den lagrade proceduren appSchema.usp_ListAllBrands
         public IEnumerable<LabelBrands> GetWhiskyBrands()
         {
+            //Skapar och initierar ett anslutningsobjekt.
             using (var conn = CreateConnection())
             {
                 try
                 {
-                    // Skapar det List-objekt som initialt har plats för 100 referenser till Customer-objekt.
+                    // Skapar det List-objekt som initialt har plats för 100 referenser.
                     var labelBrands = new List<LabelBrands>(100);
+
+                    //Skapar och initierar ett SqlCommand-objekt som används till att
+                    //exekveras nedanstående lagrad procedur.
                     var cmd = new SqlCommand("appSchema.usp_ListAllBrands", conn);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -26,15 +30,22 @@ namespace WhiskyApp.Model
                     //Öppnar anslutning till databasen
                     conn.Open();
 
+
+                    //Den lagrade proceduren innehåller en SELECT-sats som kan returnera flera poster varför
+                    //ett SqlDataReader-objekt måste ta hand om alla poster. Metoden ExecuteReader skapar ett
+                    //SqlDataReader-objekt och returnerar en referens till objektet.
                     using (var reader = cmd.ExecuteReader())
                     {
-                        // Tar reda på vilket index de olika kolumnerna har. Genom att använda GetOrdinal behöver du inte känna till
+                        //Nedan tar reda på vilket index de olika kolumnerna har.
                         var labelBrandsIndex = reader.GetOrdinal("BrandID");
                         var labelBrandsNameIndex = reader.GetOrdinal("Brand");
 
+
+                        // Så länge som det finns poster att läsa returnerar Read true. Finns det inte fler
+                        // poster returnerar Read false.
                         while (reader.Read())
                         {
-                            // Hämtar ut datat för en post. Använder GetXxx-metoder - vilken beror av typen av data.
+                            // Hämtar ut datat för en post.
                             labelBrands.Add(new LabelBrands
                             {
                                 BrandID = reader.GetInt32(labelBrandsIndex),
@@ -42,7 +53,11 @@ namespace WhiskyApp.Model
                             });
                         }
                     }
+
+                    //TrimExcess tar bort överflödig plats från listan labelBrands, avallokerar minne
+                    //som inte används.
                     labelBrands.TrimExcess();
+
                     return labelBrands;
                 }
                 catch (Exception)
@@ -52,14 +67,10 @@ namespace WhiskyApp.Model
             }
         }
 
-
-
-
-
-
-        //Metoden DeleteContact tar bort en kontaktuppgift
+        //Metoden DeleteLabelBrand tar bort ett whiskymärke ur datorbasen med hjälp av appSchema.usp_DeleteWhiskyBrandName proceduren.
         public void DeleteLabelBrand(int brandID)
         {
+            // Skapar och initierar ett anslutningsobjekt.
             using (SqlConnection conn = CreateConnection())
             {
                 try
@@ -75,13 +86,12 @@ namespace WhiskyApp.Model
                 }
                 catch (Exception)
                 {
-                    throw new ApplicationException("Ett fel uppstod när uppgifterna plockades bort från databasen.");
+                    throw new ApplicationException("Ett fel uppstod när uppgifterna editerades i databasen.");
                 }
             }
         }
 
-
-
+        //Metoden GetWhiskyBrand hämtar ett specifikt whiskymärke ur datorbasen för att kunna editera ett existerande whiskymärke.
         public static LabelBrands GetWhiskyBrand(int brandID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -92,11 +102,16 @@ namespace WhiskyApp.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(@"BrandID", SqlDbType.Int, 4).Value = brandID;
+
+                    //Öppnar anslutning till databasen samt "ExecuteNonQuery" kommandot för att INSERT information.
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        // Om det finns en post att läsa returnerar Read true. Finns ingen post returnerar
+                        // Read false.
                         if (reader.Read())
                         {
                             var BrandIDIndex = reader.GetOrdinal("BrandID");
@@ -118,7 +133,7 @@ namespace WhiskyApp.Model
         }
 
 
-
+        //Metoden InsertWhisky hämtar ett specifikt whiskymärke ur datorbasen för att kunna editera ett existerande whiskymärke.
         public void InsertWhisky(LabelBrands labelbrands)
         {
             using (SqlConnection conn = CreateConnection())
@@ -129,7 +144,6 @@ namespace WhiskyApp.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@Brand", SqlDbType.VarChar, 50).Value = labelbrands.Brand;
-
                     cmd.Parameters.Add("@BrandID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                     //Öppnar anslutning till databasen samt "ExecuteNonQuery" kommandot för att "INSERT" till databasen
@@ -143,10 +157,7 @@ namespace WhiskyApp.Model
                 }
         }
 
-
-
-
-        //UpdateContact uppdaterar en befintlig whiskuppgift
+        //UpdateWhisky uppdaterar en befintlig whiskuppgift
         public void UpdateWhisky(LabelBrands labelBrands)
         {
             using (SqlConnection conn = CreateConnection())

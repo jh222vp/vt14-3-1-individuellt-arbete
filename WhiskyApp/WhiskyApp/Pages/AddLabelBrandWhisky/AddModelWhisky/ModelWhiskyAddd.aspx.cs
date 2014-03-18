@@ -30,6 +30,7 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddModelWhisky
             {
                 Service.SaveModel(whiskyModel);
                 Page.setTempData("Success", "Modellen lades till");
+                
                 //Redirecten skickar oss vidare till defaultsidan så det inte sker en ny postback
                 Response.RedirectToRoute("ModelWhisky");
             }

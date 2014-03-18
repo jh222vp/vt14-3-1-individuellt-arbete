@@ -10,14 +10,15 @@ namespace WhiskyApp.Model
 {
     public class ModelDAL : DALBase
     {
-        //GetContacts används för att hämta alla kontaktuppgifter samt kontakatuppgifter
+        //GetWhiskyModels används för att hämta alla whiskymodeller med hjälp av bl.a den lagrade proceduren appSchema.usp_ListModel
         public static IEnumerable<WhiskyModel> GetWhiskyModels()
         {
+            //Skapar och initierar ett anslutningsobjekt.
             using (var conn = CreateConnection())
             {
                 try
                 {
-                    // Skapar det List-objekt som initialt har plats för 100 referenser till Customer-objekt.
+                    // Skapar det List-objekt som initialt har plats för 100 referenser.
                     var whiskyModel = new List<WhiskyModel>(100);
                     var cmd = new SqlCommand("appSchema.usp_ListModel", conn);
 
@@ -28,10 +29,12 @@ namespace WhiskyApp.Model
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                        // Tar reda på vilket index de olika kolumnerna har. Genom att använda GetOrdinal behöver du inte känna till
+                        //Tar reda på vilket index de olika kolumnerna har.
                         var ModelIDIndex = reader.GetOrdinal("ModelID");
                         var ModelIndex = reader.GetOrdinal("Model");
 
+                        //Så länge som det finns poster att läsa returnerar Read true. Finns det inte fler
+                        //poster returnerar Read false.
                         while (reader.Read())
                         {
                             // Hämtar ut datat för en post. Använder GetXxx-metoder - vilken beror av typen av data.
@@ -42,6 +45,9 @@ namespace WhiskyApp.Model
                             });
                         }
                     }
+
+                    //TrimExcess tar bort överflödig plats från listan labelBrands, avallokerar minne
+                    //som inte används.
                     whiskyModel.TrimExcess();
                     return whiskyModel;
                 }
@@ -52,16 +58,7 @@ namespace WhiskyApp.Model
             }
         }
 
-
-
-
-
-
-
-
-
-
-
+        //GetWhiskyModelByID används för att hämta ut specifik whiskymodell med hjälp av bl.a den lagrade proceduren appSchema.usp_GetWhiskyModelByID
         public WhiskyModel GetWhiskyModelByID(int modelID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -71,16 +68,18 @@ namespace WhiskyApp.Model
                     SqlCommand cmd = new SqlCommand("appSchema.usp_GetWhiskyModelByID", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    // Tar reda på vilket index de olika kolumnerna har.
                     cmd.Parameters.Add(@"ModelID", SqlDbType.Int, 4).Value = modelID;
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        //Om det finns en post att läsa returnerar Read true. Finns ingen post returnerar
+                        //Read false.
                         if (reader.Read())
                         {
                             var ModelIDIndex = reader.GetOrdinal("ModelID");
-
                             return new WhiskyModel
                             {
                                 ModelID = reader.GetInt32(ModelIDIndex)
@@ -97,29 +96,7 @@ namespace WhiskyApp.Model
             return null;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //Metoden DeleteContact tar bort en whiskymodell
+        //Metoden DeleteModel tar bort en whiskymodell
         public static void DeleteModel(int modelID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -142,8 +119,7 @@ namespace WhiskyApp.Model
             }
         }
 
-
-        //Editerar en existerande modell
+        //Metoden GetModelUpdate updaterar en whiskymodell
         public WhiskyModel GetModelUpdate(WhiskyModel whiskyModel)
         {
             using (SqlConnection conn = CreateConnection())
@@ -160,6 +136,8 @@ namespace WhiskyApp.Model
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        //Om det finns en post att läsa returnerar Read true. Finns ingen post returnerar
+                        //Read false.
                         if (reader.Read())
                         {
                             var modelIDIndex = reader.GetOrdinal("modelID");
@@ -182,9 +160,7 @@ namespace WhiskyApp.Model
             return null;
         }
 
-
-
-
+        //Metoden InsertWhisky lägger till en whiskymodell
         public void InsertWhisky(WhiskyModel whiskyModel)
         {
             using (SqlConnection conn = CreateConnection())

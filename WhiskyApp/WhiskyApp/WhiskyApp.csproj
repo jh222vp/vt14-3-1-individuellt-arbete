@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="App_Infrastructure\PageExstension.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BundleConfig.cs" />
     <Compile Include="error.aspx.cs">
       <DependentUpon>error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

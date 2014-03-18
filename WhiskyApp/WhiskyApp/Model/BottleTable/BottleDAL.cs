@@ -9,14 +9,14 @@ namespace WhiskyApp.Model.BottleTable
 {
     public class BottleDAL : DAL.DALBase
     {
-        //GetContacts används för att hämta alla kontaktuppgifter samt kontakatuppgifter
+        //GetBottleInfo används för att hämta alla butlejegenskaper
         public static IEnumerable<Bottle> GetBottleInfo()
         {
             using (var conn = CreateConnection())
             {
                 try
                 {
-                    // Skapar det List-objekt som initialt har plats för 100 referenser till Customer-objekt.
+                    //Skapar det List-objekt som initialt har plats för 100 referenser till bottle-objekt.
                     var bottle = new List<Bottle>(100);
                     var cmd = new SqlCommand("appSchema.usp_ListAllBottleProperties", conn);
 
@@ -27,15 +27,18 @@ namespace WhiskyApp.Model.BottleTable
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                        // Tar reda på vilket index de olika kolumnerna har. Genom att använda GetOrdinal behöver du inte känna till
+                        // Tar reda på vilket index de olika kolumnerna har.
                         var BottleIdIndex = reader.GetOrdinal("BottleID");
                         var YearIndex = reader.GetOrdinal("Year");
                         var PriceIndex = reader.GetOrdinal("Price");
                         var AmountIndex = reader.GetOrdinal("Amount");
 
+
+                        // Så länge som det finns poster att läsa returnerar Read true. Finns det inte fler
+                        // poster returnerar Read false.
                         while (reader.Read())
                         {
-                            // Hämtar ut datat för en post. Använder GetXxx-metoder - vilken beror av typen av data.
+                            // Hämtar ut datat för en post.
                             bottle.Add(new Bottle
                             {
                                 BottleID = reader.GetInt32(BottleIdIndex),
@@ -45,6 +48,8 @@ namespace WhiskyApp.Model.BottleTable
                             });
                         }
                     }
+                    //TrimExcess tar bort överflödig plats från listan labelBrands, avallokerar minne
+                    // som inte används.
                     bottle.TrimExcess();
                     return bottle;
                 }
@@ -54,38 +59,7 @@ namespace WhiskyApp.Model.BottleTable
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //GetBottleInfo används för att hämta specifikt butlejID
         public static Bottle GetSpecificBottlePropertyID(int BottleID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -96,6 +70,8 @@ namespace WhiskyApp.Model.BottleTable
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(@"BottleID", SqlDbType.Int, 4).Value = BottleID;
+                    
+                    //Öppnar anslutning till databasen
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
@@ -120,9 +96,6 @@ namespace WhiskyApp.Model.BottleTable
             //Hamnar aldrig vid returnen nedan. Eftersom catchen fångar fel.
             return null;
         }
-
-
-
 
         //Editerar en existerande modell
         public static Bottle GetBottleUpdate(Bottle bottle)
@@ -170,13 +143,6 @@ namespace WhiskyApp.Model.BottleTable
             return null;
         }
 
-
-
-
-
-
-
-
         public static void InsertBottleProperties(Bottle bottle)
         {
             using (SqlConnection conn = CreateConnection())
@@ -186,7 +152,7 @@ namespace WhiskyApp.Model.BottleTable
                     SqlCommand cmd = new SqlCommand("appSchema.usp_AddBottleProperties", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                   
+
                     cmd.Parameters.Add("@ModelID", SqlDbType.Int, 50).Value = bottle.ModelID;
                     cmd.Parameters.Add("@Year", SqlDbType.Int, 50).Value = bottle.Year;
                     cmd.Parameters.Add("@Price", SqlDbType.Decimal).Value = bottle.Price;

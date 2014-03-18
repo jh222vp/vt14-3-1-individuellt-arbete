@@ -9,7 +9,6 @@ namespace WhiskyApp.Model.DAL
 {
     public class DALBase
     {
-        //Fält
         private static string _connectionString;
 
         //CreateConnections skapar och returnerar en referens till ett anslutningsobjekt. 

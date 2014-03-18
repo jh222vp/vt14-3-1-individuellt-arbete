@@ -11,25 +11,17 @@
         DataKeyNames="ModelID"
         InsertItemPosition="FirstItem">
 
-
-
-
         <ItemTemplate>
             <div id="ModelTemplate">
                 <ul>
-                <tr>
-                    <td>
-                        
+                    <tr>
+                        <td>
                             <%#: Item.Model %>
-                        
-                    </td>
-                </tr>
-                    </ul>
+                        </td>
+                    </tr>
+                </ul>
             </div>
-
-
         </ItemTemplate>
-
 
         <InsertItemTemplate>
             <div id="ModelTablen">
@@ -49,9 +41,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="En modell måste fyllas i!" ControlToValidate="Model" Display="None"></asp:RequiredFieldValidator>
             </div>
             </td>
-                    
                 </tr>
         </InsertItemTemplate>
     </asp:ListView>
-
 </asp:Content>

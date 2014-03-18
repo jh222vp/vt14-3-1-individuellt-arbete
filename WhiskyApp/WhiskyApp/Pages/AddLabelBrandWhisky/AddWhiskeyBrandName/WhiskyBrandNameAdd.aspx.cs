@@ -14,12 +14,13 @@ namespace WhiskyApp.Pages.AddLabelBrandWhisky.AddWhiskeyBrandName
         {
 
         }
-        //Hämtar all whisky
+        //Hämtar alla whiskynamn
         public IEnumerable<LabelBrands> AddWhiskyView_GetData()
         {
             return Service.GetWhiskys();
         }
-        //Insert för ny whisky
+
+        //Insert för nytt whiskynamn
         public void AddWhiskyView_InsertItem(LabelBrands labelBrands)
         {
             try

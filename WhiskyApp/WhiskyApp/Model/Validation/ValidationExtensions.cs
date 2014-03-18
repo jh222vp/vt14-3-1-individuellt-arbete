@@ -8,8 +8,6 @@ namespace WhiskyApp.Model.Validation
 {
     public static class ValidationExtensions
     {
-        //Denna metod är en utökning av klassen LabelBrandsDAL, medmera, 
-
         //this object gör så vi får på objektet istället för klassen 
         public static bool Validate(this object instance, out ICollection<ValidationResult> validationResults)
         {

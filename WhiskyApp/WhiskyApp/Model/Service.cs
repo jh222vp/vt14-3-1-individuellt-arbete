@@ -6,6 +6,7 @@ using WhiskyApp.Model.Validation;
 using WhiskyApp.Model;
 using WhiskyApp.Pages;
 using System.ComponentModel.DataAnnotations;
+using WhiskyApp.Model.BottleTable;
 
 namespace WhiskyApp.Model
 {
@@ -70,7 +71,7 @@ namespace WhiskyApp.Model
 
         public static BottleTable.Bottle GetBottle(int BottleID)
         {
-            return BottleTable.BottleDAL.GetSpecificBottlePropertyID(BottleID);
+            return BottleDAL.GetSpecificBottlePropertyID(BottleID);
         }
 
 
